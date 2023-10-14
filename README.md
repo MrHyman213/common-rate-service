@@ -101,7 +101,13 @@
                 this.serviceType = serviceType;
             }
         }
+
+
+      
     ```
+
+
+    
   - Выдает "рейтинг" и идентификатор лучшего отделения для фронта в контроллере.
     - `CommonRateController`
       ```
@@ -116,10 +122,7 @@
               }
               return ResponseEntity.ok(commonRatesMap);
             }
-
-      
       ```
-
   - При обращении к end-point'у "/offices/optimal", будет возвращаться JSON формата
       ```
         {
