@@ -9,11 +9,7 @@
       - `Parser`
         ```
         public Container request(double lat1, double lng1, double lat2, double lng2, long idDepartment, String mode) throws JsonProcessingException {
-                String body = "https://maps.googleapis.com/maps/api/distancematrix/json";
-                String url = body + "?destinations=" + lat1 + "%2C" + lng1 + "&mode=" + mode + "&origins=" + lat2 + "%2C" + lng2 + "&key=" + key;
-                Container container = objectMapper.readValue(jdk.performRequest(url), Container.class);
-                container.setId(idDepartment);
-                return container;
+                ...
         }
         ```
       - DTOs используемые для парсинга JSON'a.
@@ -25,10 +21,7 @@
                                 @JsonProperty("origin_addresses") List<String> origin,
                              @JsonProperty("rows") List<Rows> rows,
                              @JsonProperty String status) {
-                destinationAddresses = destination;
-                originAddresses = origin;
-                this.rows = rows;
-                this.status = status;
+                  ...
             }
         }
         ```
@@ -64,23 +57,7 @@
     - `TimePathService`
       ```
       public Map<Long, Long> getRatesByRoads(InfoToGetRates infoToGetRates) throws JsonProcessingException {
-          times = new HashMap<>();
-          for (int i = 0; i < infoToGetRates.getId().size(); i++){
-              Container container = parser.request(
-                      infoToGetRates.getCoords().get(i).getLat(),
-                      infoToGetRates.getCoords().get(i).getLng(),
-                      infoToGetRates.getUserGeo().getLat(),
-                      infoToGetRates.getUserGeo().getLng(),
-                      infoToGetRates.getId().get(i),
-                      infoToGetRates.getMoveType()
-              );
-              times.put(Long.valueOf(infoToGetRates.getId().get(i)),
-                      Long.valueOf(container.getRows().get(0)
-                              .getElements().get(0)
-                              .getDuration().getValue())
-              );
-          }
-         return times;
+            ...
       }
       ```
     Где первый long - id отделения, а второй - длительность пути в милисекундах.
@@ -94,6 +71,7 @@
                                @JsonProperty("user_geo") Coords userGeo,
                                @JsonProperty("move_type") String moveType,
                                @JsonProperty("service_type") String serviceType){
+                  ...
             }
         }
       ```
@@ -101,15 +79,7 @@
     - `CommonRateController`
       ```
       public ResponseEntity<?> getCommonRates(@RequestBody InfoToGetRates infoToGetRates) {
-              log.info("getCommonRates officesIds:{}", infoToGetRates.getId());
-              Map<Long, Double> commonRatesMap;
-              try {
-                  Map<Long, Long> idsToTime = timePathService.getRatesByRoads(infoToGetRates);
-                  commonRatesMap = formCommonRateService.getCommonRatesMap(idsToTime, infoToGetRates.getServiceType());
-              } catch (JsonProcessingException e) {
-                  throw new RuntimeException(e);
-              }
-              return ResponseEntity.ok(commonRatesMap);
+                ...
             }
       ```
   - При обращении к end-point'у "/offices/optimal", будет возвращаться JSON формата
