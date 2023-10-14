@@ -105,7 +105,7 @@
   - Выдает "рейтинг" и идентификатор лучшего отделения для фронта в контроллере.
     - `CommonRateController`
       ```
-            public ResponseEntity<?> getCommonRates(@RequestBody InfoToGetRates infoToGetRates){
+      public ResponseEntity<?> getCommonRates(@RequestBody InfoToGetRates infoToGetRates) {
               log.info("getCommonRates officesIds:{}", infoToGetRates.getId());
               Map<Long, Double> commonRatesMap;
               try {
@@ -116,8 +116,11 @@
               }
               return ResponseEntity.ok(commonRatesMap);
             }
+
+      
       ```
-      При обращении к end-point'у "/offices/optimal", будет возвращаться JSON формата
+
+  - При обращении к end-point'у "/offices/optimal", будет возвращаться JSON формата
       ```
         {
           "id_Отделения":"рейтинг"
