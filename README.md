@@ -30,10 +30,10 @@
         this.rows = rows;
         this.status = status;
     }
-}
+    }
     ```
         - Rows 
-  ```
+```
         public class Rows {
             private List<Elements> elements;
         }
@@ -59,7 +59,7 @@
             private String text;
             private int value;
         }
-  ```
+```
   - Передает map'у другому сервису в формате <long-long>.
     - TimePathService
     ```
