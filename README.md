@@ -94,14 +94,9 @@
                                @JsonProperty("user_geo") Coords userGeo,
                                @JsonProperty("move_type") String moveType,
                                @JsonProperty("service_type") String serviceType){
-                this.coords = coords;
-                this.id = id;
-                this.userGeo = userGeo;
-                this.moveType = moveType;
-                this.serviceType = serviceType;
             }
         }
-    ````
+      ```
   - Выдает "рейтинг" и идентификатор лучшего отделения для фронта в контроллере.
     - `CommonRateController`
       ```
