@@ -18,8 +18,8 @@
         ```
       - DTOs используемые для парсинга JSON'a.
           - Container
-        ```
-public class Container {
+      ```
+    public class Container {
     @JsonCreator
     public Container(@JsonProperty("destination_addresses") List<String> destination,
                         @JsonProperty("origin_addresses") List<String> origin,
@@ -31,9 +31,9 @@ public class Container {
         this.status = status;
     }
 }
-        ```
+    ```
         - Rows 
-        ```
+  ```
         public class Rows {
             private List<Elements> elements;
         }
@@ -59,7 +59,7 @@ public class Container {
             private String text;
             private int value;
         }
-        ```
+  ```
   - Передает map'у другому сервису в формате <long-long>.
     - TimePathService
     ```
@@ -118,7 +118,7 @@ public class Container {
       }
       ```
       При обращении к end-point'у "/offices/optimal", будет возвращаться JSON формата
-      ```
+  ```
 {
   "id_Отделения":"рейтинг"
 }
