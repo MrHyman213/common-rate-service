@@ -86,21 +86,21 @@
     Где первый long - id отделения, а второй - длительность пути в милисекундах.
     - Класс, который принимает метод getRatesByRoads()
       - `InfoToGetRates`
-      ```
-      public class InfoToGetRates {
-        @JsonCreator
-        public InfoToGetRates(@JsonProperty("cords") List<Coords> coords,
-                           @JsonProperty("id") List<Integer> id,
-                           @JsonProperty("user_geo") Coords userGeo,
-                           @JsonProperty("move_type") String moveType,
-                           @JsonProperty("service_type") String serviceType){
-            this.coords = coords;
-            this.id = id;
-            this.userGeo = userGeo;
-            this.moveType = moveType;
-            this.serviceType = serviceType;
+        ```
+        public class InfoToGetRates {
+          @JsonCreator
+          public InfoToGetRates(@JsonProperty("cords") List<Coords> coords,
+                             @JsonProperty("id") List<Integer> id,
+                             @JsonProperty("user_geo") Coords userGeo,
+                             @JsonProperty("move_type") String moveType,
+                             @JsonProperty("service_type") String serviceType){
+              this.coords = coords;
+              this.id = id;
+              this.userGeo = userGeo;
+              this.moveType = moveType;
+              this.serviceType = serviceType;
+          }
         }
-    }
       ```
   - Выдает "рейтинг" и идентификатор лучшего отделения для фронта в контроллере.
     - `CommonRateController`
