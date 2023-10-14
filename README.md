@@ -18,21 +18,21 @@
         ```
       - DTOs используемые для парсинга JSON'a.
           - Container
-      ```
-    public class Container {
-    @JsonCreator
-    public Container(@JsonProperty("destination_addresses") List<String> destination,
-                        @JsonProperty("origin_addresses") List<String> origin,
-                     @JsonProperty("rows") List<Rows> rows,
-                     @JsonProperty String status) {
-        destinationAddresses = destination;
-        originAddresses = origin;
-        this.rows = rows;
-        this.status = status;
-    }
-    }
-    ```
-        - Rows 
+        ```
+        public class Container {
+            @JsonCreator
+            public Container(@JsonProperty("destination_addresses") List<String> destination,
+                                @JsonProperty("origin_addresses") List<String> origin,
+                             @JsonProperty("rows") List<Rows> rows,
+                             @JsonProperty String status) {
+                destinationAddresses = destination;
+                originAddresses = origin;
+                this.rows = rows;
+                this.status = status;
+            }
+        }
+        ```
+          - Rows.
 ```
         public class Rows {
             private List<Elements> elements;
