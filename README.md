@@ -6,7 +6,7 @@
 
 Основные моменты, которые  делает сервис: 
   - Обращается к гугл картам, для получения данных о длительности дороги.
-      - Parser
+      - `Parser`
         ```
         public Container request(double lat1, double lng1, double lat2, double lng2, long idDepartment, String mode) throws JsonProcessingException {
                 String body = "https://maps.googleapis.com/maps/api/distancematrix/json";
@@ -17,7 +17,7 @@
         }
         ```
       - DTOs используемые для парсинга JSON'a.
-          - Container
+          - `Container`
         ```
         public class Container {
             @JsonCreator
@@ -32,13 +32,13 @@
             }
         }
         ```
-          - Rows.
+          - `Rows`
         ```
         public class Rows {
             private List<Elements> elements;
         }
         ```
-        - Elements
+        - `Elements`
         ```
         public class Elements {
             private Distance distance;
@@ -46,14 +46,14 @@
             private String status;
         }  
         ```
-        - Distance 
+        - `Distance`
         ```
         public class Distance {
             private String text;
             private int value;
         }
         ```
-        - Duration
+        - `Duration`
         ```
         public class Duration {
             private String text;
@@ -61,7 +61,7 @@
         }
         ```
   - Передает map'у другому сервису в формате <long-long>.
-    - TimePathService
+    - `TimePathService`
     ```
     public Map<Long, Long> getRatesByRoads(InfoToGetRates infoToGetRates) throws JsonProcessingException {
         times = new HashMap<>();
@@ -85,7 +85,7 @@
     ```
     Где первый long - id отделения, а второй - длительность пути в милисекундах.
     - Класс, который принимает метод getRatesByRoads()
-      - InfoToGetRates
+      - `InfoToGetRates`
   ```
   public class InfoToGetRates {
     @JsonCreator
@@ -103,7 +103,7 @@
 }
   ```
   - Выдает "рейтинг" и идентификатор лучшего отделения для фронта в контроллере.
-    - CommonRateController
+    - `CommonRateController`
       ```
       public ResponseEntity<?> getCommonRates(@RequestBody InfoToGetRates infoToGetRates){
         log.info("getCommonRates officesIds:{}", infoToGetRates.getId());
