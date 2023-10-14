@@ -62,27 +62,27 @@
         ```
   - Передает map'у другому сервису в формате <long-long>.
     - `TimePathService`
-    ```
-    public Map<Long, Long> getRatesByRoads(InfoToGetRates infoToGetRates) throws JsonProcessingException {
-        times = new HashMap<>();
-        for (int i = 0; i < infoToGetRates.getId().size(); i++){
-            Container container = parser.request(
-                    infoToGetRates.getCoords().get(i).getLat(),
-                    infoToGetRates.getCoords().get(i).getLng(),
-                    infoToGetRates.getUserGeo().getLat(),
-                    infoToGetRates.getUserGeo().getLng(),
-                    infoToGetRates.getId().get(i),
-                    infoToGetRates.getMoveType()
-            );
-            times.put(Long.valueOf(infoToGetRates.getId().get(i)),
-                    Long.valueOf(container.getRows().get(0)
-                            .getElements().get(0)
-                            .getDuration().getValue())
-            );
-        }
-       return times;
-    }
-    ```
+      ```
+      public Map<Long, Long> getRatesByRoads(InfoToGetRates infoToGetRates) throws JsonProcessingException {
+          times = new HashMap<>();
+          for (int i = 0; i < infoToGetRates.getId().size(); i++){
+              Container container = parser.request(
+                      infoToGetRates.getCoords().get(i).getLat(),
+                      infoToGetRates.getCoords().get(i).getLng(),
+                      infoToGetRates.getUserGeo().getLat(),
+                      infoToGetRates.getUserGeo().getLng(),
+                      infoToGetRates.getId().get(i),
+                      infoToGetRates.getMoveType()
+              );
+              times.put(Long.valueOf(infoToGetRates.getId().get(i)),
+                      Long.valueOf(container.getRows().get(0)
+                              .getElements().get(0)
+                              .getDuration().getValue())
+              );
+          }
+         return times;
+      }
+      ```
     Где первый long - id отделения, а второй - длительность пути в милисекундах.
     - Класс, который принимает метод getRatesByRoads()
       - `InfoToGetRates`
